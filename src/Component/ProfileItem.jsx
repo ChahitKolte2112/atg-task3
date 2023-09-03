@@ -8,21 +8,6 @@ const ProfileItem = (props) => {
     const clickHandler = () => {
         dispatch(dataActions.adddata(props.details));
     };
-    const [load, setLoader] = useState(false);
-
-    useEffect(() => {
-        const image = async () => {
-            try {
-                const result = await axios.get(props.image_url);
-                if (result) {
-                    setLoader(false);
-                }
-            } catch (error) {
-                setLoader(true);
-            }
-        };
-        image();
-    }, []);
 
     return (
         <div
@@ -43,7 +28,7 @@ const ProfileItem = (props) => {
                 }}
             >
                 <img
-                    src={!load ? props.image_url : avatar}
+                    src={props.image_url ? props.image_url : avatar}
                     style={{
                         width: "55px",
                         height: "55px",

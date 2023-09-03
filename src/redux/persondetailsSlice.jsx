@@ -7,6 +7,7 @@ const personaldetailsSlice = createSlice({
     initialState,
     reducers: {
         adddata(state, action) {
+            console.log(action.payload);
             state.data = { ...action.payload };
         },
     },
