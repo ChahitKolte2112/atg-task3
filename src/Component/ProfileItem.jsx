@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
 import avatar from "../assets/avatar.svg";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { dataActions } from "../redux/persondetailsSlice";
 const ProfileItem = (props) => {
+    const dispatch = useDispatch();
     const clickHandler = () => {
-        console.log(props.details);
+        dispatch(dataActions.adddata(props.details));
     };
     const [load, setLoader] = useState(false);
 
@@ -27,6 +31,7 @@ const ProfileItem = (props) => {
                 background: "grey",
                 padding: "5px",
                 cursor: "pointer",
+                borderRadius: "5px",
             }}
             onClick={clickHandler}
         >

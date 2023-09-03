@@ -1,35 +1,124 @@
 import React from "react";
 import avatar from "../assets/avatar.svg";
+import { useSelector } from "react-redux";
 const Profile = (props) => {
+    const data = useSelector((state) => state.details.data);
+
     return (
-        <div>
-            <div>
-                <div>
-                    <img
-                        src={
-                            props.item?.image_url ? props.item?.image_url : avatar
-                        }
+        <>
+            <div style={{ borderRadius: "10px", background: "#edf0f0" }}>
+                <div
+                    style={{
+                        margin: "0",
+                        textAlign: "center",
+                        width: "100%",
+                        backgroundColor: "#abe9f7",
+                        borderTopLeftRadius: "10px",
+                        borderTopRightRadius: "10px",
+                        overflow: "hidden",
+                    }}
+                >
+                    <h2
                         style={{
-                            width: "80px",
-                            height: "80px",
-                            borderRadius: "50%",
+                            margin: "0px",
+                            padding: "10px",
+                            fontWeight: 400,
                         }}
-                    />
+                    >
+                        User Details
+                    </h2>
                 </div>
-                <div>
-                    <span>FullName</span>
-                    <p>{props.item?.name}</p>
-                </div>
-                <div>
-                    <span>Job Title</span>
-                    <p>{props.item?.jobTitle}</p>
-                </div>
-                <div>
-                    <span>Email</span>
-                    <p>{props.item?.email}</p>
+                <div
+                    style={{
+                        padding: "10px",
+                        boxSizing: "border-box",
+                        display: "flex",
+                        justifyContent: "center",
+                    }}
+                >
+                    {" "}
+                    <div style={{ width: "55%" }}>
+                        <div style={{ textAlign: "center" }}>
+                            <img
+                                src={data?.image_url ? data?.image_url : avatar}
+                                style={{
+                                    width: "80px",
+                                    height: "80px",
+                                    borderRadius: "50%",
+                                }}
+                            />
+                        </div>
+                        <p style={{ textAlign: "center" }}>
+                            {"@" + data?.profile.username}
+                        </p>
+                        <p
+                            style={{
+                                width: "100%",
+                                background: "grey",
+                                padding: "10px",
+                                borderRadius: "7px",
+                                margin: "25px 0px",
+                            }}
+                        >
+                            {data?.Bio}
+                        </p>
+                        <div>
+                            <span style={{ fontSize: "15px", padding: "5px" }}>
+                                FullName
+                            </span>
+                            <p
+                                style={{
+                                    width: "100%",
+                                    background: "grey",
+                                    padding: "8px",
+                                    borderRadius: "7px",
+                                    marginTop: "3px",
+                                }}
+                            >
+                                {`${data?.profile?.firstName}` +
+                                    " " +
+                                    `${data?.profile?.lastName}`}
+                            </p>
+                        </div>
+                        <div>
+                            <span style={{ fontSize: "15px", padding: "5px" }}>
+                                Job Title
+                            </span>
+                            <p
+                                style={{
+                                    width: "100%",
+                                    background: "grey",
+                                    padding: "8px",
+                                    borderRadius: "7px",
+                                    marginTop: "3px",
+                                }}
+                            >
+                                {data?.jobTitle}
+                            </p>
+                        </div>
+                        <div
+                            style={{
+                                width: "100%",
+                                overflowWrap: "break-word",
+                            }}
+                        >
+                            <span style={{ padding: "5px" }}>Email</span>
+                            <p
+                                style={{
+                                    width: "100%",
+                                    background: "grey",
+                                    padding: "8px",
+                                    borderRadius: "7px",
+                                    marginTop: "3px",
+                                }}
+                            >
+                                {data?.profile?.email}
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 };
 
